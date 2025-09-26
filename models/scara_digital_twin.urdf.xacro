@@ -1,0 +1,209 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_manipulador">
+
+    <!-- Parámetros de la base -->
+    <xacro:property name="baselx" value="${29/100}" />
+    <xacro:property name="basely" value="${11/100}" />
+    <xacro:property name="baselz" value="${10.3/100}" />
+
+    <!-- Parámetros del brazo 1 -->
+    <xacro:property name="bra1lx" value="${21.2/100}" />
+    <xacro:property name="bra1ly" value="${5/100}" />
+    <xacro:property name="bra1lz" value="${8.3/100}" />
+    
+    <!-- Offsets del brazo 1 -->
+
+    <xacro:property name="olz1" value="${40/100}" />
+
+    <!-- Parámetros del brazo 2 -->
+    <xacro:property name="bra2lx" value="${13.3/100}" />
+    <xacro:property name="bra2ly" value="${5.5/100}" />
+    <xacro:property name="bra2lz" value="${5.5/100}" />
+
+    <!-- Offsets del brazo 1 -->
+
+    <xacro:property name="olz2" value="${23/100}" />
+
+    <!-- distancia entre bazos -->
+    <xacro:property name="dist_brazos" value="${100/100}" />
+    <xacro:property name="yoffset" value="${25/100}" />
+
+    <!-- Parámetros de la herramienta -->
+    <xacro:property name="of_herramienta_lx" value="${1.6/100}" />
+    <xacro:property name="of_herramienta_ly" value="${3.0/100}" />
+    <xacro:property name="of_herramienta_lz" value="${14.0/100}" />
+
+
+    <!-- Macro para un brazo -->
+    <xacro:macro name="brazo_macro" params="p_name p_xlength p_ylength p_zlength">
+        <link name="${p_name}">
+            <visual>
+                <geometry>
+                    <box size="${p_xlength} ${p_ylength} ${p_zlength}"/>
+                </geometry>
+                <origin xyz="${(p_xlength/2)-0.023} 0 ${(p_zlength/2)}" rpy="0 0 0"/>
+            </visual>
+
+            <inertial>
+                <mass value="1"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+            </inertial>
+
+            <collision>
+                <geometry>
+                    <box size="${p_xlength} ${p_ylength} ${p_zlength}"/>
+                </geometry>
+                <origin xyz="${(p_xlength/2)-0.023} 0 ${(p_zlength/2)}" rpy="0 0 0"/>
+            </collision>
+        </link>
+    </xacro:macro>
+
+
+    <!-- Base -->
+    <link name="base_link" />
+        <!-- Base -->
+
+
+    <joint name="base_principal_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_principal_link"/>
+        <origin xyz="0 0 ${baselz/2}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="base_principal_link">
+        <visual>
+            <geometry>
+                <box size="${baselx} ${basely} ${baselz}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="custom_blue">
+                <color rgba="0.0 0.0 1.0 1.0"/> <!-- R G B A -->
+            </material>
+
+        </visual>
+
+        <inertial>
+            <mass value="1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+
+        <collision>
+            <geometry>
+                <box size="${baselx} ${basely} ${baselz}"/>
+            </geometry>
+            <origin xyz="0 0 ${baselz/2}" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+
+
+
+
+    <!-- Brazo 1 -->
+    <joint name="brazo1_joint" type="revolute">
+        <parent link="base_principal_link"/>
+        <child link="brazo1_link"/>
+        <origin xyz="${(baselx/2)-0.04} 0 ${baselz/2}" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" lower="-${pi/2}" upper="${pi/2}" velocity="1"/>
+        <dynamics damping="1" friction="1"/> 
+    </joint>
+    
+
+
+    <link name="brazo1_link">
+        <visual>
+            <geometry>
+                <box size="${bra1lx} ${bra1ly} ${bra1lz}"/>
+            </geometry>
+            <origin xyz="${(bra1lx/2)-0.034} 0 ${bra1lz/2}" rpy="0 0 0"/>
+            <material name="purple">
+                <color rgba="0.5 0 0.5 1"/> <!-- rojo=0.5, verde=0, azul=0.5, alfa=1 -->
+            </material>
+
+        </visual>
+
+        <inertial>
+            <mass value="1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+
+        <collision>
+            <geometry>
+                <box size="${bra1lx} ${bra1ly} ${bra1lz}"/>
+            </geometry>
+            <origin xyz="0 0 ${bra1lz/2}" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+    <!-- <xacro:brazo_macro p_name="brazo1_link"
+                       p_xlength="${bra1lx}"
+                       p_ylength="${bra1ly}"
+                       p_zlength="${bra1lz}" /> -->
+
+    <!-- Brazo 2 -->
+
+    <joint name="brazo2_joint" type="revolute">
+        <parent link="brazo1_link"/>
+        <child link="brazo2_link"/>
+        <origin xyz="${(bra1lx-0.023-0.034)} 0 ${bra1lz}" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" lower="-${pi/2}" upper="${pi/2}" velocity="1"/>
+        <dynamics damping="1" friction="1"/> 
+
+    </joint>
+
+    <xacro:brazo_macro p_name="brazo2_link"
+                       p_xlength="${bra2lx}"
+                       p_ylength="${bra2ly}"
+                       p_zlength="${bra2lz}" />
+
+  
+
+    <!-- Brazo p -->
+    
+    <joint name="prismatic_joint" type="prismatic">
+        <parent link="brazo2_link"/>
+        <child link="prismatic_link"/>
+        <origin xyz="${(bra2lx-0.015)} 0 ${bra2lz}" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" lower="-${pi/2}" upper="${pi/2}" velocity="1"/>
+        <dynamics damping="1" friction="1"/> 
+
+    </joint>
+
+
+    <link name="prismatic_link">
+        <visual>
+            <geometry>
+                <box size="${of_herramienta_lx} ${of_herramienta_ly} ${of_herramienta_lz}"/>
+            </geometry>
+            <origin xyz="0 0 ${of_herramienta_lz/2}" rpy="0 0 0"/>
+            <material name="purple">
+                <color rgba="0.5 0 0.5 1"/> <!-- rojo=0.5, verde=0, azul=0.5, alfa=1 -->
+            </material>
+
+        </visual>
+
+        <inertial>
+            <mass value="1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+
+        <collision>
+            <geometry>
+                <box size="${of_herramienta_lx} ${of_herramienta_ly} ${of_herramienta_lz}"/>
+            </geometry>
+            <origin xyz="0 0 ${of_herramienta_lz/2}" rpy="0 0 0"/>
+        </collision>
+    </link>
+
+
+
+    
+
+</robot>

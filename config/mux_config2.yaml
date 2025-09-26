@@ -1,0 +1,11 @@
+twist_mux:
+  ros__parameters:
+    topics:
+      teleop:
+        topic   : /inv_kin # Note: /desired_pos is used from keyboard
+        timeout : 0.5
+        priority: 50
+      navigation:
+        topic   : /config
+        timeout : 0.5
+        priority: 100

@@ -1,0 +1,11 @@
+twist_mux:
+  ros__parameters:
+    topics:
+      teleop:
+        topic   : /desired_pos # Note: /desired_pos is used from keyboard
+        timeout : 0.5
+        priority: 100
+      navigation:
+        topic   : /goal_pose_twist
+        timeout : 0.5
+        priority: 50

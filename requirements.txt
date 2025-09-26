@@ -1,0 +1,24 @@
+# Python dependencies for development
+# These are not ROS2 runtime dependencies but useful for development
+
+# Code formatting and linting
+black>=22.0.0
+flake8>=4.0.0
+pylint>=2.15.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Development utilities
+numpy>=1.21.0
+matplotlib>=3.5.0
+scipy>=1.9.0
+
+# Optional: Jupyter for prototyping
+# jupyter>=1.0.0
+# ipykernel>=6.0.0

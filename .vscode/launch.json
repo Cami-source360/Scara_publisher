@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS2: Launch SCARA Publisher",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scara_publisher/scara_publisher_node.py",
+            "console": "integratedTerminal",
+            "env": {
+                "ROS_DOMAIN_ID": "0",
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
+            },
+            "args": []
+        },
+        {
+            "name": "ROS2: Launch SCARA Controller",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scara_publisher/scara_controller_node.py",
+            "console": "integratedTerminal",
+            "env": {
+                "ROS_DOMAIN_ID": "0",
+                "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
+            },
+            "args": []
+        },
+        {
+            "name": "ROS2: Launch All Nodes",
+            "type": "python",
+            "request": "launch",
+            "module": "launch_ros.launch_file_utilities.launch_file",
+            "args": [
+                "${workspaceFolder}/launch/scara_publisher_launch.py"
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "ROS_DOMAIN_ID": "0"
+            }
+        }
+    ]
+}

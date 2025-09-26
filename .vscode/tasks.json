@@ -1,0 +1,71 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "colcon: build",
+            "type": "shell",
+            "command": "colcon build --packages-select scara_publisher",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/.."
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "colcon: test",
+            "type": "shell",
+            "command": "colcon test --packages-select scara_publisher",
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}/.."
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "colcon: clean",
+            "type": "shell",
+            "command": "rm -rf build install log",
+            "options": {
+                "cwd": "${workspaceFolder}/.."
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "ROS2: Source setup",
+            "type": "shell",
+            "command": "source /opt/ros/humble/setup.bash",
+            "problemMatcher": []
+        },
+        {
+            "label": "Python: Install dependencies",
+            "type": "shell",
+            "command": "pip3 install -r requirements.txt",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Python: Lint with flake8",
+            "type": "shell",
+            "command": "flake8 scara_publisher/",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Python: Format with black",
+            "type": "shell",
+            "command": "black scara_publisher/",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

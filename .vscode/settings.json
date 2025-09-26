@@ -1,0 +1,39 @@
+{
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pep8Enabled": false,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "100"],
+    "python.linting.pylintArgs": [
+        "--disable=C0103,C0114,C0115,C0116,R0903,R0913,W0613",
+        "--extension-pkg-whitelist=numpy"
+    ],
+    "python.linting.flake8Args": [
+        "--max-line-length=100",
+        "--ignore=E203,W503"
+    ],
+    "files.associations": {
+        "*.launch": "python",
+        "*.xacro": "xml",
+        "*.urdf": "xml",
+        "*.sdf": "xml"
+    },
+    "editor.rulers": [100],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "xml.format.splitAttributes": true,
+    "ros.distro": "humble",
+    "colcon.provideTasks": true,
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

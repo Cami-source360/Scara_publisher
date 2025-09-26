@@ -1,0 +1,38 @@
+# SCARA Robot Configuration
+
+scara_publisher:
+  ros__parameters:
+    publish_rate: 10.0
+    joint_names: ['joint1', 'joint2', 'joint3', 'joint4']
+    workspace_radius: 0.5
+    
+    # Joint limits (radians for rotational, meters for prismatic)
+    joint_limits:
+      joint1: [-3.14159, 3.14159]  # Base rotation: ±180°
+      joint2: [-1.57080, 1.57080]  # Shoulder: ±90°
+      joint3: [-0.2, 0.2]          # Vertical (prismatic): ±20cm
+      joint4: [-3.14159, 3.14159]  # Wrist rotation: ±180°
+
+scara_controller:
+  ros__parameters:
+    control_rate: 20.0
+    max_joint_velocity: 1.0
+    position_tolerance: 0.01
+    
+    # PID controller gains
+    pid_gains:
+      joint1: {kp: 2.0, ki: 0.1, kd: 0.05}
+      joint2: {kp: 2.0, ki: 0.1, kd: 0.05}
+      joint3: {kp: 5.0, ki: 0.2, kd: 0.1}   # Higher gains for prismatic joint
+      joint4: {kp: 1.5, ki: 0.05, kd: 0.02}
+    
+    # Safety limits
+    max_joint_velocities: [2.0, 2.0, 0.5, 2.0]  # rad/s or m/s
+    max_joint_accelerations: [5.0, 5.0, 1.0, 5.0]  # rad/s² or m/s²
+    
+    # Robot physical parameters
+    robot_params:
+      link1_length: 0.3  # meters
+      link2_length: 0.2  # meters
+      base_height: 0.1   # meters
+      tool_offset: 0.05  # meters

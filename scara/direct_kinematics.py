@@ -14,7 +14,7 @@ class ScaraDirectKinematics(Node):
         # ---- Parameters (declare + get) ----
         self.declare_parameter('joint1', 'brazo1_joint')
         self.declare_parameter('joint2', 'brazo2_joint') 
-        self.declare_parameter('joint3', 'prismatic_link')
+        self.declare_parameter('joint3', 'prismatic_joint')
         self.declare_parameter('publish_rate', 50.0)      # Hz
     
 

@@ -9,3 +9,8 @@ twist_mux:
         topic   : /goal_pose_twist
         timeout : 0.5
         priority: 50
+      navigation:
+        topic   : /trayectories
+        timeout : 0.5
+        priority: 200
+

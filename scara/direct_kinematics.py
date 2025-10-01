@@ -106,8 +106,8 @@ class ScaraDirectKinematics(Node):
         self.pj1 = math.radians(msg.linear.x)  # Joint 1 position (rad)
         self.pj2 = math.radians(msg.linear.y)  # Joint 2 position (rad)
         self.pj3 = msg.linear.z / 1000.0       # Joint 3 position (m)
-        self.vj1 = math.radians(msg.angular.x) # Joint 1 velocity (rad/s)
-        self.vj2 = math.radians(msg.angular.y) # Joint 2 velocity (rad/s)
+        self.vj1 = msg.angular.x # Joint 1 velocity (rad/s)
+        self.vj2 = (msg.angular.y) # Joint 2 velocity (rad/s)
         # Joint 3 velocity is assumed always 0 (prismatic joint)       
         
     def publish_final_pos(self):

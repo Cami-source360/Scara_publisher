@@ -29,6 +29,8 @@ setup(
             "inverse_kinematics= scara.inverse_kinematics:main",
             "direct_kinematics= scara.direct_kinematics:main",
             "translate_node= scara.translate_node:main",
+            "trayectory_planner= scara.trayectory_planner:main",
+            "dxf_parser_node = scara.dxf_parser_node:main",
         ],
     },
 )

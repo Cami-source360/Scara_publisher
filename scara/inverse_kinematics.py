@@ -91,20 +91,20 @@ class ScaraInverseKinematics(Node):
         if not self.flag:
             self.flag = True
 
-    def _desired_pos_callback_stm(self, msg: PoseStamped):
-            """
-            Callback for desired position topic
-            Converts input from mm to cm for x,y and keeps z in mm
-            """
-            # Convert from mm to cm for x and y coordinates
-            self.px = msg.pose.position.x * 100.0  # m to cm
-            self.py = msg.pose.position.y * 100.0  # m to cm
-            self.pz = msg.pose.position.z * 100.0         # keep z in mm
+    # def _desired_pos_callback_stm(self, msg: PoseStamped):
+    #         """
+    #         Callback for desired position topic
+    #         Converts input from mm to cm for x,y and keeps z in mm
+    #         """
+    #         # Convert from mm to cm for x and y coordinates
+    #         self.px = msg.pose.position.x * 100.0  # m to cm
+    #         self.py = msg.pose.position.y * 100.0  # m to cm
+    #         self.pz = msg.pose.position.z * 100.0         # keep z in mm
             
-            self.get_logger().debug(f'Received desired position: x={self.px:.2f}cm, y={self.py:.2f}cm, z={self.pz:.2f}mm')
+    #         self.get_logger().debug(f'Received desired position: x={self.px:.2f}cm, y={self.py:.2f}cm, z={self.pz:.2f}mm')
             
-            if not self.flag:
-                self.flag = True
+    #         if not self.flag:
+    #             self.flag = True
 
 
     def publish_inverse_kinematics(self):
@@ -127,8 +127,8 @@ class ScaraInverseKinematics(Node):
             
             # Create and publish Twist message
             tw = Twist()
-            tw.linear.x = math.degrees(self.th1)  # Convert to degrees
-            tw.linear.y = math.degrees(self.th2)  # Convert to degrees  
+            tw.linear.x = (self.th1)  # Convert to degrees
+            tw.linear.y = (self.th2)  # Convert to degrees  
             tw.linear.z = self.pz                 # Keep z in cm
             
             self.publisher_inv_kin.publish(tw)

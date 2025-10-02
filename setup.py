@@ -30,7 +30,7 @@ setup(
             "direct_kinematics= scara.direct_kinematics:main",
             "translate_node= scara.translate_node:main",
             "trayectory_planner= scara.trayectory_planner:main",
-            "dxf_parser_node = scara.dxf_parser_node:main",
+            "dxf_parser_node2 = scara.dxf_parser_node2:main",
         ],
     },
 )

@@ -97,13 +97,19 @@ def generate_launch_description():
         output='screen',
     )
 
-    xdf_parser_node = Node(
+    # xdf_parser_node = Node(
+    #     package='scara',
+    #     executable='dxf_parser_node',
+    #     name='dxf_parser',
+    #     output='screen',
+    # )
+
+    dxf_parser_node2 = Node(
         package='scara',
-        executable='dxf_parser_node',
-        name='dxf_parser',
+        executable='dxf_parser_node2',
+        name='dxf_parser2',
         output='screen',
     )
-
     # Launch!
     return LaunchDescription([
         gui_arg,
@@ -115,5 +121,6 @@ def generate_launch_description():
         twist_mux_node,
         twist_mux_node2,
         direct_kinematics,
-        xdf_parser_node,
+        # xdf_parser_node,
+        dxf_parser_node2,
     ])

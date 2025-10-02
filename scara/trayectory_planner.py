@@ -37,8 +37,7 @@ class TrayectorPlannerNode(Node):
 
     def coeficients_spline(self):
         "calcula los coeficientes del spline quintico"
-        #en tiempo 0
-         
+      
 
 
 
